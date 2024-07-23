@@ -7,8 +7,13 @@
     "position": "top",
     "height": 30,
 
-    "modules-left": ["custom/menu","hyprland/workspaces"],
+    "modules-left": [
+        /*"custom/menu",*/ 
+        "hyprland/workspaces"
+    ],
+
     "modules-center": ["custom/spotify"],
+
     "modules-right": [
         "tray", 
         "cpu", 
@@ -23,8 +28,11 @@
     ],
 
     "hyprland/workspaces": {
-        "format": "{name}"
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
+
     "clock#time": {
         "interval": 1,
         "format": "   {:%H:%M}",
@@ -32,11 +40,13 @@
         "format-alt-click": "click-left",
         "tooltip": false
     },
+
     "clock#date": {
-      "interval": 10,
-      "format": "   {:%e %b %Y}", // Icon: calendar-alt
-      "tooltip-format": "{:%e %B %Y}"
+        "interval": 10,
+        "format": "   {:%e %b %Y}", // Icon: calendar-alt
+        "tooltip-format": "{:%e %B %Y}"
     },
+
     "battery": {
         "interval": 10,
         "states": {
@@ -56,6 +66,7 @@
         ],
         "tooltip": true
     },
+
     "network": {
         "interval": 15,
         "format-alt": "   {essid} {ipaddr}/{cidr}",
@@ -66,6 +77,7 @@
         "on-click": "kitty -e nmtui",
         "tooltip": "{ifname}: {ipaddr}"
     },
+
     "pulseaudio#output": {
         "format": "{icon}   {volume}%",
         "format-alt": "{icon}",
@@ -79,6 +91,7 @@
         "on-click": "pavucontrol",
         "tooltip": false
     },
+
     "pulseaudio#input": {
         "format-source": "   {volume}%",
         "format-source-muted": "󰍭   {volume}%",
@@ -91,6 +104,7 @@
         "on-scroll-down": "amixer sset 'Capture' 2%-",
         "tooltip": false
     },
+
     "custom/spotify": {
         "interval": 1,
         "return-type": "json",
@@ -103,6 +117,7 @@
         "on-scroll-up": "playerctl volume 0.05+ --player=spotify",
         "on-scroll-down": "playerctl volume 0.05- --player=spotify"
     },
+
     "custom/menu": {
         "format": "",
         "interval": 1,
@@ -144,10 +159,12 @@
         },
         "tooltip": false
     },
+
     "memory": {
         "interval": 5,
         "format": "RAM {}% "
     },
+    
     "tray": {
         "icon-size": 16
     }
