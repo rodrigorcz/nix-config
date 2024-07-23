@@ -1,0 +1,154 @@
+/* Configuration references: 
+    https://github.com/robertjk/dotfiles/
+    https://github.com/rbnis/legacy-dotfiles/tree/master/.config/waybar
+*/
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+
+    "modules-left": ["custom/menu","hyprland/workspaces"],
+    "modules-center": ["custom/spotify"],
+    "modules-right": [
+        "tray", 
+        "cpu", 
+        "memory", 
+        "backlight", 
+        "pulseaudio#output",
+        "pulseaudio#input", 
+        "network", 
+        "battery", 
+        "clock#time", 
+        "clock#date"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}"
+    },
+    "clock#time": {
+        "interval": 1,
+        "format": "   {:%H:%M}",
+        "format-alt": "{:%H:%M:%S}",
+        "format-alt-click": "click-left",
+        "tooltip": false
+    },
+    "clock#date": {
+      "interval": 10,
+      "format": "   {:%e %b %Y}", // Icon: calendar-alt
+      "tooltip-format": "{:%e %B %Y}"
+    },
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        // Connected to AC
+        "format": "{icon}   {capacity}% ", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon}   {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
+    },
+    "network": {
+        "interval": 15,
+        "format-alt": "   {essid} {ipaddr}/{cidr}",
+        "format-alt-click": "click-right",
+        "format-wifi": "   {signalStrength}%", // Icon: wifi
+        "format-ethernet": "   {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+        "format-disconnected": "⚠  Disconnected",
+        "on-click": "kitty -e nmtui",
+        "tooltip": "{ifname}: {ipaddr}"
+    },
+    "pulseaudio#output": {
+        "format": "{icon}   {volume}%",
+        "format-alt": "{icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "phone": [" ", " ", " ", " "],
+            "default": ["", "", ""]
+        },
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "pulseaudio#input": {
+        "format-source": "   {volume}%",
+        "format-source-muted": "󰍭   {volume}%",
+        "format": "{format_source}",
+        "scroll-step": 1,
+        "smooth-scrolling-threshold": 1,
+        "on-click": "amixer sset 'Capture' toggle",
+        "on-click-middle": "pavucontrol",
+        "on-scroll-up": "amixer sset 'Capture' 2%+",
+        "on-scroll-down": "amixer sset 'Capture' 2%-",
+        "tooltip": false
+    },
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/nix-config/modules/home-manager/waybar/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true,
+        "on-click": "playerctl play-pause --player=spotify",
+        "on-click-right": "playerctl next --player=spotify",
+        "on-click-middle": "playerctl previous --player=spotify",
+        "on-scroll-up": "playerctl volume 0.05+ --player=spotify",
+        "on-scroll-down": "playerctl volume 0.05- --player=spotify"
+    },
+    "custom/menu": {
+        "format": "",
+        "interval": 1,
+        "on-click": "rofi -show drun -show-icons",
+        "tooltip": false
+    },/*
+    "custom/storage": {
+        "format": "{} ",
+        "format-alt": "{percentage}% ",
+        "format-alt-click": "click-right",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/modules/storage.sh"
+    },*/
+    "backlight": {
+        "format": "{icon}   {percent}%",
+        "format-alt": " {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": ["󰃠"],
+        "on-scroll-down": "brightnessctl set 5%- --min-value=5%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "tooltip": false
+    },/*
+    "custom/mail": {
+        "format": "",
+        "format-alt": "{alt} ",
+        "format-alt-click": "click-right",
+        "interval": 60,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/mail.py",
+        "tooltip": false
+    },*/
+    "cpu": {
+        "interval": 5,
+        "format": "CPU {usage}% ",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 5,
+        "format": "RAM {}% "
+    },
+    "tray": {
+        "icon-size": 16
+    }
+}
