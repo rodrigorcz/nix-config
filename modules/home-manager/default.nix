@@ -5,6 +5,9 @@
     ./hyprland
     ./kitty
     ./waybar
+    ./rofi
+    ./zsh
+    ./dunst
   ];
 
 }

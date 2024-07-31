@@ -14,12 +14,6 @@
     };
   };
 
-  # Networking
-  networking = {
-    hostName = "nixos";
-    networkmanager.enable = true; # nmcli device wifi connect <SSID> password <PASS>
-  };
-
   # Time Zone
   time.timeZone = "America/Sao_Paulo";
 
@@ -100,6 +94,7 @@
     home = "/home/rodrigo";
     description = "rodrigo";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -108,9 +103,10 @@
   # Enable experimental features (Flakes)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  fonts.fontDir.enable = true;
   # Basic packages
   programs = {
-    firefox.enable = true;
+    zsh.enable = true;
     hyprland.enable = true;
     git.enable = true;
     steam.enable = true;
@@ -125,6 +121,14 @@
 
   # Environment variables
   environment.variables.EDITOR = "nvim";
+
+  # Networking
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true; # nmcli device wifi connect <SSID> password <PASS>
+    
+  };
+
 
   # XDG portal settings
   xdg.portal = {

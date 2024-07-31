@@ -6,34 +6,48 @@
     ../modules/home-manager
   ];
   
-  
   home = {
     username = "rodrigo";
     homeDirectory = "/home/rodrigo";
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    TERMINAL = "xterm-kitty";
+    BROWSER = "firefox";
+  };
+  
   # Packages
   home.packages = with pkgs; [ 
-    firefox
+
+    # Softwares
     steam
-    git
-    vim 
-    lf
-    spotify
+    spotify  
+    stellarium
+    gimp
+
+    # Utilities
+    lua
     wget
     zip
     unzip
     kitty
     feh
-    google-chrome
-    vscode   
-    lua
-    stellarium
+    vscode 
     just
-    gimp
+    git
+    vim 
+    lf
+    nix-zsh-completions
+    zsh-completions
+    tmux
+    htop
+    wev
+
+    # System Tools 
     libreoffice
     waybar
-    dunst
+    hyprshot
     swww
     rofi-wayland
     playerctl
@@ -43,25 +57,35 @@
     pamixer
     brightnessctl
     alsa-utils
+
+    # Browsers
+    firefox
+    brave
+    google-chrome
+
     discord
     discord-ptb
     discord-canary
 
     # Rust
     rustc
+    rustfmt
     cargo
     cargo-watch
-    rustfmt
 
     # Python
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pandas
       python-pkgs.numpy
       python-pkgs.matplotlib
-      python-pkgs.seaborn
       python-pkgs.pyside6
       python-pkgs.pygobject3
     ]))
+
+    # C/C++
+    gdb
+    valgrind
+    cmake
 
     # Web Develop
     nodejs
@@ -73,7 +97,7 @@
     # Fonts
     cantarell-fonts
     font-awesome
-    fira-code
+    iosevka
     nerdfonts
   ];
 

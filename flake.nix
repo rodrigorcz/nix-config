@@ -13,6 +13,7 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs =  inputs @ { 
@@ -31,19 +32,7 @@
           specialArgs = {inherit inputs outputs;};
 
           modules = [
-
             ./nixos/configuration.nix
-
-            /*# Home manager as a NixOS module
-            home-manager.nixosModules.home-manager{
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = false;
-                extraSpecialArgs = {inherit inputs outputs;};
-                users.rodrigo = import ./nixos/home.nix;
-              };
-            }*/
-
           ];
       };
     };
