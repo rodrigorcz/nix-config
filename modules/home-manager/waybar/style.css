@@ -45,7 +45,7 @@ window#waybar.solo {
 }
 
 /*---------------- General decoration ----------------*/
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #backlight, #custom-storage, #custom-spotify, #clock.time {
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #backlight, #custom-storage, #custom-spotify, #clock.time, #tray {
 	margin:     1px 8px 0px 8px;
 	min-width:  25px;
 	padding-bottom: 2px;
@@ -64,11 +64,6 @@ window#waybar.solo {
 
 #custom-playerctl {
 	color: #79da7a;
-}
-
-#tray{
-	min-width: 20px;
-	padding-bottom: 1px;
 }
 
 #clock.date {

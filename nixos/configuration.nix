@@ -56,7 +56,7 @@
 
     # Enable sound with PipeWire
     pipewire = {
-      enable = true;
+      enable = false;
       alsa = {
         enable = true;
         support32Bit = true;
@@ -79,10 +79,18 @@
 
   # Hardware settings
   hardware = {
-    bluetooth.enable = true;
     opengl.enable = true;
     nvidia.modesetting.enable = true;
-    pulseaudio.enable = false;
+
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
+
+    bluetooth={
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   # Security settings
@@ -104,6 +112,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   fonts.fontDir.enable = true;
+  
   # Basic packages
   programs = {
     zsh.enable = true;
@@ -125,10 +134,30 @@
   # Networking
   networking = {
     hostName = "nixos";
-    networkmanager.enable = true; # nmcli device wifi connect <SSID> password <PASS>
+    # networkmanager.enable = true; # nmcli device wifi connect <SSID> password <PASS>
     
+    wireless = {
+      enable = true;
+      userControlled.enable = true;
+      environmentFile = "/run/secrets/wireless.env";
+      networks = {
+        NET_5GB9E029.psk = "@PASS_APT_5G@";
+        
+        eduroam = {
+          auth = ''
+            proto=RSN
+            key_mgmt=WPA-EAP
+            pairwise=CCMP
+            auth_alg=OPEN
+            eap=PEAP
+            identity="@LOGIN_USP@"
+            password="@PASS_USP@"
+            phase2="auth=MSCHAPV2"
+          '';
+        };
+      };
+    };
   };
-
 
   # XDG portal settings
   xdg.portal = {

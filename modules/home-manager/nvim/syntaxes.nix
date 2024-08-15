@@ -24,7 +24,7 @@
           '';
       }
 
-      { # Nvim-tree
+      /*{ # Nvim-tree
         plugin = nvim-tree-lua;
         type = "lua";
         config =
@@ -69,7 +69,7 @@
 
             vim.keymap.set('n', '<C-n>', ':NvimTreeFindFile<CR>')
           '';
-      }
+      }*/
 
       { # Telescope
         plugin = telescope-nvim;
@@ -77,6 +77,7 @@
         config =
           ''
             local telescope = require('telescope')
+            local builtin = require('telescope.builtin')
 
             telescope.setup{
               defaults = {
@@ -117,13 +118,9 @@
       { # Gruvbox
         plugin = gruvbox;
         config = ''
-          vim.cmd([[
-            set background=dark " ou "light" para tema claro
-            colorscheme gruvbox
-          ]])
+          vim.cmd([[colorscheme gruvbox]])
         '';
       }
     ];
   };
-
 }

@@ -82,13 +82,14 @@
         "format": "{icon}   {volume}%",
         "format-alt": "{icon}",
         "format-alt-click": "click-right",
-        "format-muted": "󰝟",
+        "format-muted": "",
         "format-icons": {
             "phone": [" ", " ", " ", " "],
             "default": ["", "", ""]
         },
         "scroll-step": 1,
-        "on-click": "pavucontrol",
+        "on-click-right": "pavucontrol",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "tooltip": false
     },
 

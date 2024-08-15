@@ -44,7 +44,7 @@
     htop
     wev
 
-    # System Tools 
+    # System Tools and Stuffs
     libreoffice
     waybar
     hyprshot
@@ -83,6 +83,7 @@
     ]))
 
     # C/C++
+    clang
     gdb
     valgrind
     cmake
